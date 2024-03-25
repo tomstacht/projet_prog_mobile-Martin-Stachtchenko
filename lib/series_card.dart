@@ -19,7 +19,7 @@ class SeriesCard extends StatelessWidget {
             fit: BoxFit.cover,
             // In case the image doesn't load, you can provide an error widget.
             errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
-              return const Icon(Icons.error); // Placeholder for an error.
+              return const Icon(Icons.error); // Placeholder for an errors.
             },
           ),
           Text(serie.title, style: const TextStyle(color: Colors.white)),
