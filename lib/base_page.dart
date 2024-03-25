@@ -65,19 +65,19 @@ class _BasePageState extends State<BasePage> {
             label: 'Accueil',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/svg/navbar_comics.png', height: 24),
+            icon: Image.asset('images/navbar_comics.png', height: 24),
             label: 'Comics',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/svg/navbar_series.png', height: 24),
+            icon: Image.asset('images/navbar_series.png', height: 24),
             label: 'Séries',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/svg/navbar_movies.png', height: 24),
+            icon: Image.asset('images/navbar_movies.png', height: 24),
             label: 'Films',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/svg/navbar_search.png', height: 24),
+            icon: Image.asset('images/navbar_search.png', height: 24),
             label: 'Recherche',
           ),
         ],

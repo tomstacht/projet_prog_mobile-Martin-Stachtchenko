@@ -52,7 +52,18 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
+  assets:
+    - images/navbar_home.png
+    - images/navbar_comics.png
+    - images/navbar_movies.png
+    - images/navbar_search.png
+    - images/navbar_series.png
+    - images/astronaut.png
+    - images/ic_books_bicolor.png
+    - images/ic_calendar_bicolor.png
+    - images/ic_movie_bicolor.png
+    - images/ic_publisher_bicolor.png
+    - images/ic_tv_bicolor.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

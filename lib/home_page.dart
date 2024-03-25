@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 0, top: 10),
           child: Image.asset(
-            'assets/svg/astronaut.svg',
+            'images/astronaut.png',
             height: 159,
             width: 121,
           ),
