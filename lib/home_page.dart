@@ -29,17 +29,18 @@ class HomePage extends StatelessWidget {
     return Row(
       children: <Widget>[
         const Padding(
-          padding: EdgeInsets.only(left: 10, top: 10),
+          padding: EdgeInsets.only(left: 10),
           child: Text(
             'Bienvenue !',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.white,
+              fontSize: 40,
             ),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 0, top: 10),
+          padding: const EdgeInsets.only(left: 70),
           child: Image.asset(
             'images/astronaut.png',
             height: 159,

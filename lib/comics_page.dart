@@ -14,7 +14,7 @@ class ComicsPage extends StatelessWidget {
         child: Column(
           children: [
             _buildHeader(),
-              ...mockComics.map((comic) => ComicCard(comic: comic)).toList(),
+              ...mockComics.map((comic) => ComicCard(comic: comic, rank: 1)).toList(),
           ],
         ),
       ),
@@ -24,12 +24,13 @@ class ComicsPage extends StatelessWidget {
 
   Widget _buildHeader() {
     return Padding(
-      padding: EdgeInsets.only(left: 10, top: 10),
+      padding: EdgeInsets.only(left: 5, top: 10, bottom: 20),
       child: Text(
-        'Comics les plus populaires !',
+        'Comics les plus populaires',
         style: TextStyle(
           fontWeight: FontWeight.bold,
           color: Colors.white,
+          fontSize: 30,
         ),
       ),
     );
