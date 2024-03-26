@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'base_page.dart';
 import 'horizontal_items_grid.dart';
 import 'comic.dart';
 import 'section.dart';
@@ -11,23 +10,18 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BasePage(
-      title: 'Accueil',
-      bottomNavIndex: 0,
-      pages: [
-        SingleChildScrollView(
-          child: Column(
-            children: [
-              _buildHeader(),
-              Section(title: 'Séries populaires', child: HorizontalItemGrid(series: mockSeries)),
-              Section(title: 'Comics populaires', child: HorizontalItemGrid(series: mockComics)),
-              Section(title: 'Films populaires', child: HorizontalItemGrid(series: mockFilms)),
-            ],
-          ),
+    return Container(
+      color: const Color(0xFF15232E), // Set the background color
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            _buildHeader(),
+            Section(title: 'Séries populaires', child: HorizontalItemGrid(series: mockSeries)),
+            Section(title: 'Comics populaires', child: HorizontalItemGrid(series: mockComics)),
+            Section(title: 'Films populaires', child: HorizontalItemGrid(series: mockFilms)),
+          ],
         ),
-        // Ajoutez d'autres pages ici si nécessaire
-      ],
-      child: Container(),
+      ),
     );
   }
 
@@ -51,7 +45,7 @@ class HomePage extends StatelessWidget {
             height: 159,
             width: 121,
           ),
-        )
+        ),
       ],
     );
   }

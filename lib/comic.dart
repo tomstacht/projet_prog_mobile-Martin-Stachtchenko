@@ -1,11 +1,23 @@
 class Comic {
   final String title;
   final String imageUrl;
+  final int issueNumber;
+  final String releaseDate;
 
-  Comic(this.title, this.imageUrl);
+  Comic({
+    required this.title,
+    required this.imageUrl,
+    required this.issueNumber,
+    required this.releaseDate,
+  });
 
-  // Mock method to generate example data
+  // If you're using mock data for now, you can create a mock constructor like this:
   factory Comic.mock() {
-    return Comic('Comic Title', 'https://placekitten.com/200/300'); // Placeholder image URL
+    return Comic(
+      title: 'Titre du comic',
+      imageUrl: 'images/ic_movie_bicolor.png', // Replace with a real image path or URL
+      issueNumber: 1,
+      releaseDate: 'Jan 2020',
+    );
   }
 }

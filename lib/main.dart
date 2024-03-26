@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projet_prog_mobile/home_page.dart';
-//import 'services/api_service.dart';  // Importing the ApiService
-
+import 'base_page.dart'; // Make sure this import is correct
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +16,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         canvasColor: const Color(0xFF15232E), // Set your desired background color here
       ),
-      home: HomePage(),
+      home: BasePage(), // Use BasePage as the home widget
     );
   }
 }
