@@ -58,6 +58,7 @@ class _BasePageState extends State<BasePage> {
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.blue[800],
+        unselectedItemColor: Colors.grey[800],
         onTap: _onItemTapped,
       ),
     );
