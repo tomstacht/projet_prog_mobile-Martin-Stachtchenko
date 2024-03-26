@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'home_page.dart'; // Ensure this file defines the HomePage widget properly
 import 'comics_page.dart'; // Ensure this file defines the ComicsPage widget properly
+import 'series_page.dart'; // Ensure this file defines the ComicsPage widget properly
 
 class BasePage extends StatefulWidget {
   @override
@@ -14,6 +15,7 @@ class _BasePageState extends State<BasePage> {
   final List<Widget> _widgetOptions = [
     HomePage(),
     ComicsPage(),
+    SeriesPage(),
     // Add more pages as needed
   ];
 

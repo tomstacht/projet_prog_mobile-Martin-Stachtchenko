@@ -43,7 +43,7 @@ class ComicCard extends StatelessWidget {
                           fontSize: 16,
                         ),
                       ),
-                      if (comic.description != null) // Check if description is not null
+                      /*if (comic.description != null) // Check if description is not null
                         Text(
                           comic.description!,
                           style: const TextStyle(
@@ -51,7 +51,7 @@ class ComicCard extends StatelessWidget {
                             color: Colors.white,
                             fontSize: 16,
                           ),
-                        ),
+                        ),*/
                       Text(
                         '№ ${comic.issueNumber}',
                         style: TextStyle(
