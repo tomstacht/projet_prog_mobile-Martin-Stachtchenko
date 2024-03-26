@@ -33,19 +33,31 @@ class _BasePageState extends State<BasePage> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Accueil', // Home
+            icon: Image.asset('images/navbar_home.png', height: 24),
+            label: 'Accueil',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.book),
+            icon: Image.asset('images/navbar_comics.png', height: 24),
             label: 'Comics',
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset('images/navbar_series.png', height: 24),
+            label: 'Séries',
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset('images/navbar_movies.png', height: 24),
+            label: 'Films',
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset('images/navbar_search.png', height: 24),
+            label: 'Recherche',
           ),
           // Add more items as needed
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.blue[800],
         onTap: _onItemTapped,
       ),
     );
