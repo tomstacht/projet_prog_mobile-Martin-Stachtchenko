@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'films_page.dart';
 import 'home_page.dart'; // Ensure this file defines the HomePage widget properly
 import 'comics_page.dart'; // Ensure this file defines the ComicsPage widget properly
 import 'series_page.dart'; // Ensure this file defines the ComicsPage widget properly
@@ -16,6 +17,7 @@ class _BasePageState extends State<BasePage> {
     HomePage(),
     ComicsPage(),
     SeriesPage(),
+    FilmsPage(),
     // Add more pages as needed
   ];
 
