@@ -36,33 +36,63 @@ class _BasePageState extends State<BasePage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Image.asset('images/navbar_home.png', height: 24),
-            label: 'Accueil',
+          _buildNavigationBarItem(
+            'Accueil',
+            'images/navbar_home.png',
+            0,
           ),
-          BottomNavigationBarItem(
-            icon: Image.asset('images/navbar_comics.png', height: 24),
-            label: 'Comics',
+          _buildNavigationBarItem(
+            'Comics',
+            'images/navbar_comics.png',
+            1,
           ),
-          BottomNavigationBarItem(
-            icon: Image.asset('images/navbar_series.png', height: 24),
-            label: 'Séries',
+          _buildNavigationBarItem(
+            'Séries',
+            'images/navbar_series.png',
+            2,
           ),
-          BottomNavigationBarItem(
-            icon: Image.asset('images/navbar_movies.png', height: 24),
-            label: 'Films',
+          _buildNavigationBarItem(
+            'Films',
+            'images/navbar_movies.png',
+            3,
           ),
-          BottomNavigationBarItem(
-            icon: Image.asset('images/navbar_search.png', height: 24),
-            label: 'Recherche',
+          _buildNavigationBarItem(
+            'Recherche',
+            'images/navbar_search.png',
+            4,
           ),
           // Add more items as needed
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue[800],
-        unselectedItemColor: Colors.grey[800],
+        selectedItemColor: Colors.blue, // Active item color
         onTap: _onItemTapped,
       ),
+    );
+  }
+
+  BottomNavigationBarItem _buildNavigationBarItem(
+      String label,
+      String imagePath,
+      int index,
+      ) {
+    bool isSelected = _selectedIndex == index;
+    return BottomNavigationBarItem(
+      icon: ColorFiltered(
+        colorFilter: isSelected
+            ? ColorFilter.mode(
+          Colors.blue, // Change the color to blue when selected
+          BlendMode.srcIn,
+        )
+            : ColorFilter.mode(
+          Colors.grey, // Change the color to grey when not selected
+          BlendMode.srcIn,
+        ),
+        child: Image.asset(
+          imagePath,
+          height: 24,
+        ),
+      ),
+      label: label,
     );
   }
 }
