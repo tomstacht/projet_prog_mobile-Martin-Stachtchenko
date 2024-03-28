@@ -43,15 +43,14 @@ class ComicCard extends StatelessWidget {
                           fontSize: 16,
                         ),
                       ),
-                      /*if (comic.description != null) // Check if description is not null
                         Text(
-                          comic.description!,
+                          comic.description ?? 'Description non disponible', // Utilisation de l'opérateur de coalescence nulle
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                             fontSize: 16,
                           ),
-                        ),*/
+                        ),
                       Text(
                         '№ ${comic.issueNumber}',
                         style: TextStyle(
