@@ -23,7 +23,7 @@ class SeriesPage extends StatelessWidget {
 
 
   Widget _buildHeader() {
-    return Padding(
+    return const Padding(
       padding: EdgeInsets.only(left: 5, top: 10, bottom: 20),
       child: Text(
         'Series les plus populaires',

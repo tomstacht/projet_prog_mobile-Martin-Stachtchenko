@@ -14,7 +14,10 @@ class SeriesCard extends StatelessWidget {
         // La navigation se déclenche ici
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ComicDetailPage(comic: serie)),
+          MaterialPageRoute(builder: (context) => ComicDetailPage(
+              comic: serie,
+              selectedCategory: 'Histoire',
+          )),
         );
       },
       child: Card(
@@ -30,7 +33,7 @@ class SeriesCard extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(serie.title, style: const TextStyle(color: Colors.white)),
+              child: Text(serie.titre, style: const TextStyle(color: Colors.white)),
             ),
             // ... other card details
           ],

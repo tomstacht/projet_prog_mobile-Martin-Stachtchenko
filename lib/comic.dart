@@ -1,6 +1,8 @@
 class Comic {
-  final String title;
-  final String author;
+  final String titre;
+  final String auteur;
+  final String histoire;
+  final List<String> personnages;
   final int id;
   final String description;
   final String imageUrl;
@@ -8,8 +10,10 @@ class Comic {
   final String releaseDate;
 
   Comic({
-    required this.title,
-    required this.author,
+    required this.titre,
+    required this.auteur,
+    required this.histoire,
+    required this.personnages,
     required this.id,
     required this.description,
     required this.imageUrl,
@@ -21,10 +25,12 @@ class Comic {
   factory Comic.mock() {
     return Comic(
       id: 1,
-      author: 'auteur',
-      title: 'Titre du comic',
+      auteur: 'auteur',
+      titre: 'Titre du comic',
+      histoire: 'Histoire',
+      personnages: ['Personnage1', 'Personnage2'], // Exemple de liste de personnages
       description: 'Courte description',
-      imageUrl: 'images/ic_movie_bicolor.png', // Replace with a real image path or URL
+      imageUrl: 'images/astronaut.png', // Replace with a real image path or URL
       issueNumber: 1,
       releaseDate: 'Jan 2020',
     );

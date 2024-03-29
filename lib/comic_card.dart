@@ -36,7 +36,7 @@ class ComicCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        comic.title,
+                        comic.titre,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
