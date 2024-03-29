@@ -16,7 +16,7 @@ class SearchPage extends StatelessWidget {
               width: double.infinity,
               margin: EdgeInsets.symmetric(horizontal: 16.0),
               decoration: BoxDecoration(
-                color: Color(0xFF2C3E50), // Lighter color for the section
+                color: Color(0xFF2C3E50), // Lighter color for the sectionserfghszdfg
                 borderRadius: BorderRadius.circular(20.0),
               ),
               padding: const EdgeInsets.all(16.0),
