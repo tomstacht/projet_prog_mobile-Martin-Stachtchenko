@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'horizontal_items_grid.dart';
 import 'comic.dart';
 import 'section.dart';
+import 'serie.dart';
 
 class HomePage extends StatelessWidget {
-  final List<Comic> mockSeries = List.generate(10, (index) => Comic.mock());
+  final List<Serie> mockSeries = List.generate(10, (index) => Serie.mock());
   final List<Comic> mockComics = List.generate(10, (index) => Comic.mock());
   final List<Comic> mockFilms = List.generate(10, (index) => Comic.mock());
 

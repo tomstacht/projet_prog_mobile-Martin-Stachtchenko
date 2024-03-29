@@ -20,8 +20,6 @@ class _BasePageState extends State<BasePage> {
     SeriesPage(),
     FilmsPage(),
     SearchPage(),
-
-    // Add more pages as needed
   ];
 
   void _onItemTapped(int index) {
@@ -34,7 +32,7 @@ class _BasePageState extends State<BasePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF15232E), // Set the AppBar background color here
+        backgroundColor: const Color(0xFF15232E), // Set the AppBar background color here
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
@@ -84,11 +82,11 @@ class _BasePageState extends State<BasePage> {
     return BottomNavigationBarItem(
       icon: ColorFiltered(
         colorFilter: isSelected
-            ? ColorFilter.mode(
+            ? const ColorFilter.mode(
           Colors.blue, // Change the color to blue when selected
           BlendMode.srcIn,
         )
-            : ColorFilter.mode(
+            : const ColorFilter.mode(
           Colors.grey, // Change the color to grey when not selected
           BlendMode.srcIn,
         ),
