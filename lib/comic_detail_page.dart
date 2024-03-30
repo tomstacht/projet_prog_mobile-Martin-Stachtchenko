@@ -43,19 +43,19 @@ class _ComicDetailPageState extends State<ComicDetailPage> with SingleTickerProv
               topRight: Radius.circular(20.0),
             ),
           ),
-          child: const Padding(
+          child: Padding(
             padding: EdgeInsets.all(8.0),
             child: Align(
               alignment: Alignment.topLeft,
               child: Text(
-                'Content for story',
+                widget.comic.histoire,
                 style: TextStyle(color: Colors.white),
               ),
             ),
           ),
         );
       case 'auteur':
-        backgroundColor = Color(0xFF1E3243); // Background color for story
+        backgroundColor = Color(0xFF1E3243); // Background color for author
         return Container(
           decoration: BoxDecoration(
             color: backgroundColor,
@@ -64,19 +64,19 @@ class _ComicDetailPageState extends State<ComicDetailPage> with SingleTickerProv
               topRight: Radius.circular(20.0),
             ),
           ),
-          child: const Padding(
+          child: Padding(
             padding: EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                'Content for author',
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: widget.comic.auteurs.map((auteur) => Text(
+                auteur,
                 style: TextStyle(color: Colors.white),
-              ),
+              )).toList(),
             ),
           ),
         );
       case 'personnage':
-        backgroundColor = Color(0xFF1E3243); // Background color for story
+        backgroundColor = Color(0xFF1E3243); // Background color for character
         return Container(
           decoration: BoxDecoration(
             color: backgroundColor,
@@ -116,6 +116,7 @@ class _ComicDetailPageState extends State<ComicDetailPage> with SingleTickerProv
         return const SizedBox.shrink();
     }
   }
+
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,6 @@
 class Comic {
   final String titre;
-  final String auteur;
+  final List<String> auteurs;
   final String histoire;
   final List<String> personnages;
   final int id;
@@ -11,7 +11,7 @@ class Comic {
 
   Comic({
     required this.titre,
-    required this.auteur,
+    required this.auteurs,
     required this.histoire,
     required this.personnages,
     required this.id,
@@ -25,7 +25,7 @@ class Comic {
   factory Comic.mock() {
     return Comic(
       id: 1,
-      auteur: 'auteur',
+      auteurs: ['Auteur1', 'Auteur2'],
       titre: 'Titre du comic',
       histoire: 'Histoire',
       personnages: ['Personnage1', 'Personnage2'], // Exemple de liste de personnages
