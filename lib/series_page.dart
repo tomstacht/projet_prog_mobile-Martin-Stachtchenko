@@ -1,20 +1,33 @@
 import 'package:flutter/material.dart';
-import 'comic_card.dart';
-import 'package:projet_prog_mobile/comic.dart'; // Adjust the path to where your Comic class is defined
+import 'serie_card.dart';
+import 'serie.dart'; // Adjust the path to where your Comic class is defined
+import 'serie_detail_page.dart'; // Assurez-vous d'importer ComicDetailPage
 
 
 class SeriesPage extends StatelessWidget {
-  final List<Comic> mockComics = List.generate(10, (index) => Comic.mock());
+  final List<Serie> mockSeries = List.generate(10, (index) => Serie.mock());
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xFF15232E), // Set the background color
+      color: const Color(0xFF15232E),
       child: SingleChildScrollView(
         child: Column(
           children: [
             _buildHeader(),
-            ...mockComics.map((comic) => ComicCard(comic: comic, rank: 1)).toList(),
+            ...mockSeries.map((serie) {
+              // Utilisez GestureDetector ou InkWell pour envelopper ComicCard
+              return GestureDetector(
+                onTap: () {
+                  // Navigation vers ComicDetailPage avec le comic cliqué
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SerieDetailPage(serie: serie, selectedCategory: 'histoire',)),
+                  );
+                },
+                child: SerieCard(serie: serie, rank: 1),
+              );
+            }).toList(),
           ],
         ),
       ),
