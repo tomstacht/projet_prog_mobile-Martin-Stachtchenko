@@ -18,7 +18,7 @@ class _PersonnageDetailPageState extends State<PersonnageDetailPage> with Single
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
   }
 
   @override
@@ -89,112 +89,41 @@ class _PersonnageDetailPageState extends State<PersonnageDetailPage> with Single
       ),
       body: Stack(
         children: [
-          // Background Image with Blur
           Positioned.fill(
-            child: Image.network(
-              widget.personnage.imageUrl,
-              fit: BoxFit.cover,
-            ),
+          child: Image.network(
+            widget.personnage.imageUrl,
+            fit: BoxFit.cover,
           ),
-          // Blurred Background
-          Positioned.fill(
+        ),
+            // Blurred Background
+            Positioned.fill(
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-              child: Container(
-                color: Colors.black.withOpacity(0.3), // Adjust opacity as needed
-              ),
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            child: Container(
+              color: Colors.black.withOpacity(0.3),
             ),
-          ),
+    ),
+            ),
           // Main Content
           Padding(
             padding: const EdgeInsets.only(top: kToolbarHeight), // Ensure content starts below the AppBar
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // Cover Image and Details
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Cover Image (small)
-                      SizedBox(
-                        width: 100, // Adjust size as needed
-                        height: 150, // Adjust size as needed
-                        child: Image.network(
-                          widget.personnage.imageUrl,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      // Details
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            // Issue Number
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                children: [
-                                  Image.asset(
-                                    'images/ic_books_bicolor.png',
-                                    width: 20,
-                                    height: 20,
-                                    color: Colors.white,
-                                  ),
-                                  SizedBox(width: 8),
-                                  Text(
-                                    'Issue Number: ${widget.personnage.datenaissance}',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            // Release Date
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                children: [
-                                  Image.asset(
-                                    'images/ic_calendar_bicolor.png',
-                                    width: 20,
-                                    height: 20,
-                                    color: Colors.white,
-                                  ),
-                                  SizedBox(width: 8),
-                                  Text(
-                                    'Release Date: ${widget.personnage.datedeces}',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
                 // Tab Bar
                 TabBar(
                   controller: _tabController,
                   labelColor: Colors.white,
                   tabs: [
-                    Tab(
-                      text: 'Histoire',
-                    ),
-                    Tab(
-                      text: 'Auteurs',
-                    ),
-                    Tab(
-                      text: 'Personnages',
-                    ),
+                    Tab(text: 'Histoire'),
+                    Tab(text: 'Infos'),
+                    // Si vous avez un troisième onglet
                   ],
                   indicator: BoxDecoration(
                     border: Border(
                       bottom: BorderSide(
-                        color: Colors.orange, // Color of the indicator bar
-                        width: 3.0, // Width of the indicator bar
+                        color: Colors.orange,
+                        width: 3.0,
                       ),
                     ),
                   ),
@@ -204,8 +133,8 @@ class _PersonnageDetailPageState extends State<PersonnageDetailPage> with Single
                     controller: _tabController,
                     children: [
                       _buildCategoryInfo('histoire'),
-                      _buildCategoryInfo('auteur'),
-                      _buildCategoryInfo('personnage'),
+                      _buildCategoryInfo('infos'),
+                      // Contenu pour le troisième onglet si nécessaire
                     ],
                   ),
                 ),

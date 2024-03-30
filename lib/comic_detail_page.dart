@@ -1,6 +1,8 @@
 import 'dart:ui'; // Import for using the ImageFilter class
 import 'package:flutter/material.dart';
 import 'comic.dart';
+import 'personnage.dart';
+import 'details_personnage.dart';
 
 class ComicDetailPage extends StatefulWidget {
   final Comic comic;
@@ -14,6 +16,7 @@ class ComicDetailPage extends StatefulWidget {
 
 class _ComicDetailPageState extends State<ComicDetailPage> with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  List<Personnage> personnages = List.generate(10, (index) => Personnage.mock());
 
   @override
   void initState() {
@@ -82,15 +85,31 @@ class _ComicDetailPageState extends State<ComicDetailPage> with SingleTickerProv
               topRight: Radius.circular(20.0),
             ),
           ),
-          child: const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                'Content for character',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
+          child: ListView.builder(
+            padding: const EdgeInsets.all(8.0),
+            itemCount: personnages.length,
+            itemBuilder: (BuildContext context, int index) {
+              return GestureDetector(
+                onTap: () {
+                  // La navigation se fait ici
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PersonnageDetailPage(
+                        personnage: personnages[index],
+                        selectedCategory: 'histoire', // ou une autre catégorie selon votre logique
+                      ),
+                    ),
+                  );
+                },
+                child: ListTile(
+                  leading: CircleAvatar(
+                    backgroundImage: AssetImage(personnages[index].imageUrl),
+                  ),
+                  title: Text(personnages[index].nomsuperheros, style: TextStyle(color: Colors.white)),
+                ),
+              );
+            },
           ),
         );
       default:
