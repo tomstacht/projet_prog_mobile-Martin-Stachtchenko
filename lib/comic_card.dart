@@ -23,7 +23,7 @@ class ComicCard extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              // Logo pour le numéro
+              // Image for the comic cover
               Image.asset(
                 comic.imageUrl,
                 width: 100,
@@ -44,27 +44,55 @@ class ComicCard extends StatelessWidget {
                           fontSize: 16,
                         ),
                       ),
-                        Text(
-                          comic.description ?? 'Description non disponible', // Utilisation de l'opérateur de coalescence nulle
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 16,
-                          ),
-                        ),
                       Text(
-                        '№ ${comic.issueNumber}',
-                        style: TextStyle(
-                          color: Colors.white.withOpacity(0.7),
-                          fontSize: 14,
+                        comic.description,
+                        style: const TextStyle(
+                          fontStyle: FontStyle.italic,
+                          color: Colors.white,
+                          fontSize: 16,
                         ),
                       ),
-                      Text(
-                        comic.releaseDate,
-                        style: TextStyle(
-                          color: Colors.white.withOpacity(0.7),
-                          fontSize: 12,
-                        ),
+                      // Row for the issue number with the logo
+                      Row(
+                        children: [
+                          // Logo for the issue number
+                          Image.asset(
+                            'images/ic_books_bicolor.png', // Chemin vers votre image
+                            width: 20,
+                            height: 20,
+                            color: Colors.white,
+                          ),
+                          SizedBox(width: 8), // Spacer between the logo and the text
+                          // Text for the issue number
+                          Text(
+                            '№ ${comic.issueNumber}',
+                            style: TextStyle(
+                              color: Colors.white.withOpacity(0.7),
+                              fontSize: 14,
+                            ),
+                          ),
+                        ],
+                      ),
+                      // Row for the release date with the logo
+                      Row(
+                        children: [
+                          // Logo for the release date
+                          Image.asset(
+                            'images/ic_calendar_bicolor.png', // Chemin vers votre image
+                            width: 20,
+                            height: 20,
+                            color: Colors.white,
+                          ),
+                          SizedBox(width: 8), // Spacer between the logo and the text
+                          // Text for the release date
+                          Text(
+                            comic.releaseDate,
+                            style: TextStyle(
+                              color: Colors.white.withOpacity(0.7),
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
