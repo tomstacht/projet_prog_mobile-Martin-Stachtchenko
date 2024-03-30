@@ -2,7 +2,9 @@ import 'dart:ui'; // Import for using the ImageFilter class
 import 'package:flutter/material.dart';
 import 'comic.dart';
 import 'personnage.dart';
-import 'details_personnage.dart';
+import 'auteur_details_page.dart';
+import 'personnage_details_page.dart';
+import 'auteur.dart';
 
 class ComicDetailPage extends StatefulWidget {
   final Comic comic;
@@ -17,6 +19,7 @@ class ComicDetailPage extends StatefulWidget {
 class _ComicDetailPageState extends State<ComicDetailPage> with SingleTickerProviderStateMixin {
   late TabController _tabController;
   List<Personnage> personnages = List.generate(10, (index) => Personnage.mock());
+  List<Auteur> auteurs = List.generate(10, (index) => Auteur.mock());
 
   @override
   void initState() {
@@ -30,11 +33,12 @@ class _ComicDetailPageState extends State<ComicDetailPage> with SingleTickerProv
     super.dispose();
   }
 
+
   Widget _buildCategoryInfo(String category) {
     Color backgroundColor;
     switch (category) {
       case 'histoire':
-        backgroundColor = Color(0xFF1E3243); // Background color for story
+        backgroundColor = const Color(0xFF1E3243); // Background color for story
         return Container(
           decoration: BoxDecoration(
             color: backgroundColor,
@@ -44,18 +48,18 @@ class _ComicDetailPageState extends State<ComicDetailPage> with SingleTickerProv
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: Align(
               alignment: Alignment.topLeft,
               child: Text(
                 widget.comic.histoire,
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
               ),
             ),
           ),
         );
-      case 'auteur':
-        backgroundColor = Color(0xFF1E3243); // Background color for author
+      case 'auteurs':
+        backgroundColor = const Color(0xFF1E3243); // Background color for character
         return Container(
           decoration: BoxDecoration(
             color: backgroundColor,
@@ -64,19 +68,36 @@ class _ComicDetailPageState extends State<ComicDetailPage> with SingleTickerProv
               topRight: Radius.circular(20.0),
             ),
           ),
-          child: Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: widget.comic.auteurs.map((auteur) => Text(
-                auteur,
-                style: TextStyle(color: Colors.white),
-              )).toList(),
-            ),
+          child: ListView.builder(
+            padding: const EdgeInsets.all(8.0),
+            itemCount: auteurs.length,
+            itemBuilder: (BuildContext context, int index) {
+              return GestureDetector(
+                onTap: () {
+                  // La navigation se fait ici
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AuteurDetailPage(
+                        auteur: auteurs[index],
+                        selectedCategory: 'auteurs', // ou une autre catégorie selon votre logique
+                      ),
+                    ),
+                  );
+                },
+                child: ListTile(
+                  leading: CircleAvatar(
+                    backgroundImage: AssetImage(auteurs[index].imageUrl),
+                  ),
+                  title: Text(auteurs[index].nom, style: const TextStyle(color: Colors.white)),
+                ),
+              );
+            },
           ),
         );
+
       case 'personnage':
-        backgroundColor = Color(0xFF1E3243); // Background color for character
+        backgroundColor = const Color(0xFF1E3243); // Background color for character
         return Container(
           decoration: BoxDecoration(
             color: backgroundColor,
@@ -106,7 +127,7 @@ class _ComicDetailPageState extends State<ComicDetailPage> with SingleTickerProv
                   leading: CircleAvatar(
                     backgroundImage: AssetImage(personnages[index].imageUrl),
                   ),
-                  title: Text(personnages[index].nomsuperheros, style: TextStyle(color: Colors.white)),
+                  title: Text(personnages[index].nomsuperheros, style: const TextStyle(color: Colors.white)),
                 ),
               );
             },
@@ -183,10 +204,10 @@ class _ComicDetailPageState extends State<ComicDetailPage> with SingleTickerProv
                                     height: 20,
                                     color: Colors.white,
                                   ),
-                                  SizedBox(width: 8),
+                                  const SizedBox(width: 8),
                                   Text(
                                     'Issue Number: ${widget.comic.issueNumber}',
-                                    style: TextStyle(color: Colors.white),
+                                    style: const TextStyle(color: Colors.white),
                                   ),
                                 ],
                               ),
@@ -202,10 +223,10 @@ class _ComicDetailPageState extends State<ComicDetailPage> with SingleTickerProv
                                     height: 20,
                                     color: Colors.white,
                                   ),
-                                  SizedBox(width: 8),
+                                  const SizedBox(width: 8),
                                   Text(
                                     'Release Date: ${widget.comic.releaseDate}',
-                                    style: TextStyle(color: Colors.white),
+                                    style: const TextStyle(color: Colors.white),
                                   ),
                                 ],
                               ),
@@ -221,17 +242,17 @@ class _ComicDetailPageState extends State<ComicDetailPage> with SingleTickerProv
                   controller: _tabController,
                   labelColor: Colors.white,
                   tabs: [
-                    Tab(
+                    const Tab(
                       text: 'Histoire',
                     ),
-                    Tab(
+                    const Tab(
                       text: 'Auteurs',
                     ),
-                    Tab(
+                    const Tab(
                       text: 'Personnages',
                     ),
                   ],
-                  indicator: BoxDecoration(
+                  indicator: const BoxDecoration(
                     border: Border(
                       bottom: BorderSide(
                         color: Colors.orange, // Color of the indicator bar
@@ -245,7 +266,7 @@ class _ComicDetailPageState extends State<ComicDetailPage> with SingleTickerProv
                     controller: _tabController,
                     children: [
                       _buildCategoryInfo('histoire'),
-                      _buildCategoryInfo('auteur'),
+                      _buildCategoryInfo('auteurs'),
                       _buildCategoryInfo('personnage'),
                     ],
                   ),
