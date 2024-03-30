@@ -4,6 +4,8 @@ import 'comic.dart';
 import 'section.dart';
 import 'serie.dart';
 import 'item_card.dart'; // Importez la classe ItemCard
+import 'comic_detail_page.dart'; // Importez la classe ItemCard
+import 'serie_detail_page.dart'; // Importez la classe ItemCard
 
 class HomePage extends StatelessWidget {
   final List<Serie> mockSeries = List.generate(10, (index) => Serie.mock());
@@ -28,6 +30,12 @@ class HomePage extends StatelessWidget {
                   titleField: serie.titre,
                   category: 'Série',
                   onTap: (item) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SerieDetailPage(serie: item, selectedCategory: 'histoire',),
+                      ),
+                    );
                     // Logique à exécuter lors du clic sur la carte de série
                   },
                 ),
@@ -43,6 +51,12 @@ class HomePage extends StatelessWidget {
                   titleField: comic.titre,
                   category: 'Comic',
                   onTap: (item) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ComicDetailPage(comic: item, selectedCategory: 'histoire',),
+                      ),
+                    );
                     // Logique à exécuter lors du clic sur la carte de comic
                   },
                 ),
