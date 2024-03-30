@@ -31,7 +31,7 @@ class _PersonnageDetailPageState extends State<PersonnageDetailPage> with Single
     Color backgroundColor;
     switch (category) {
       case 'histoire':
-        backgroundColor = Colors.blue; // Background color for story
+        backgroundColor = Color(0xFF1E3243); // Background color for story
         return Container(
           decoration: BoxDecoration(
             color: backgroundColor,
@@ -52,7 +52,7 @@ class _PersonnageDetailPageState extends State<PersonnageDetailPage> with Single
           ),
         );
       case 'infos':
-        backgroundColor = Colors.blue; // Background color for author
+        backgroundColor = Color(0xFF1E3243); // Background color for story
         return Container(
           decoration: BoxDecoration(
             color: backgroundColor,

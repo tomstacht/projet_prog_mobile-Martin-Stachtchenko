@@ -23,6 +23,7 @@ class ComicCard extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              // Logo pour le numéro
               Image.asset(
                 comic.imageUrl,
                 width: 100,

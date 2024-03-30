@@ -34,7 +34,7 @@ class _ComicDetailPageState extends State<ComicDetailPage> with SingleTickerProv
     Color backgroundColor;
     switch (category) {
       case 'histoire':
-        backgroundColor = Colors.blue; // Background color for story
+        backgroundColor = Color(0xFF1E3243); // Background color for story
         return Container(
           decoration: BoxDecoration(
             color: backgroundColor,
@@ -55,7 +55,7 @@ class _ComicDetailPageState extends State<ComicDetailPage> with SingleTickerProv
           ),
         );
       case 'auteur':
-        backgroundColor = Colors.blue; // Background color for author
+        backgroundColor = Color(0xFF1E3243); // Background color for story
         return Container(
           decoration: BoxDecoration(
             color: backgroundColor,
@@ -76,7 +76,7 @@ class _ComicDetailPageState extends State<ComicDetailPage> with SingleTickerProv
           ),
         );
       case 'personnage':
-        backgroundColor = Colors.blue; // Background color for character
+        backgroundColor = Color(0xFF1E3243); // Background color for story
         return Container(
           decoration: BoxDecoration(
             color: backgroundColor,
