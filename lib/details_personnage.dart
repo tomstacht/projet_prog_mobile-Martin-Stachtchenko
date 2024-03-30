@@ -27,7 +27,7 @@ class _PersonnageDetailPageState extends State<PersonnageDetailPage> with Single
     super.dispose();
   }
 
-  Widget _buildCategoryInfo(String category) {
+  Widget _buildCategoryInfo(String category, Personnage personnage) {
     Color backgroundColor;
     switch (category) {
       case 'histoire':
@@ -40,12 +40,12 @@ class _PersonnageDetailPageState extends State<PersonnageDetailPage> with Single
               topRight: Radius.circular(20.0),
             ),
           ),
-          child: const Padding(
+          child: Padding(
             padding: EdgeInsets.all(8.0),
             child: Align(
               alignment: Alignment.topLeft,
               child: Text(
-                'Content for histoire',
+                personnage.histoire,
                 style: TextStyle(color: Colors.white),
               ),
             ),
@@ -61,15 +61,9 @@ class _PersonnageDetailPageState extends State<PersonnageDetailPage> with Single
               topRight: Radius.circular(20.0),
             ),
           ),
-          child: const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                'Content for infos',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: _buildInfoList(personnage),
           ),
         );
       default:
@@ -131,8 +125,8 @@ class _PersonnageDetailPageState extends State<PersonnageDetailPage> with Single
                   child: TabBarView(
                     controller: _tabController,
                     children: [
-                      _buildCategoryInfo('histoire'),
-                      _buildCategoryInfo('infos'),
+                      _buildCategoryInfo('histoire', widget.personnage),
+                      _buildCategoryInfo('infos', widget.personnage),
                     ],
                   ),
                 ),
@@ -143,4 +137,44 @@ class _PersonnageDetailPageState extends State<PersonnageDetailPage> with Single
       ),
     );
   }
+
+  Widget _buildInfoList(Personnage personnage) {
+    return ListView(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      children: [
+        _buildInfoItem('Nom réel', personnage.nomreel),
+        _buildInfoItem('Nom de super-héros', personnage.nomsuperheros),
+        _buildInfoItem('Alias', personnage.alias),
+        _buildInfoItem('Editeur', personnage.editeur),
+        _buildInfoItem('Créateur', personnage.createur),
+        _buildInfoItem('Genre', personnage.genre),
+        _buildInfoItem('Date de naissance', personnage.datenaissance),
+        _buildInfoItem('Date de décès', personnage.datedeces),
+      ],
+    );
+  }
+
+  Widget _buildInfoItem(String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            label,
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Text(
+            value,
+            style: const TextStyle(color: Colors.white),
+          ),
+        ],
+      ),
+    );
+  }
+
+
 }
