@@ -114,12 +114,11 @@ class _PersonnageDetailPageState extends State<PersonnageDetailPage> with Single
                 TabBar(
                   controller: _tabController,
                   labelColor: Colors.white,
-                  tabs: [
+                  tabs: const [
                     Tab(text: 'Histoire'),
                     Tab(text: 'Infos'),
-                    // Si vous avez un troisième onglet
                   ],
-                  indicator: BoxDecoration(
+                  indicator: const BoxDecoration(
                     border: Border(
                       bottom: BorderSide(
                         color: Colors.orange,
@@ -134,7 +133,6 @@ class _PersonnageDetailPageState extends State<PersonnageDetailPage> with Single
                     children: [
                       _buildCategoryInfo('histoire'),
                       _buildCategoryInfo('infos'),
-                      // Contenu pour le troisième onglet si nécessaire
                     ],
                   ),
                 ),
