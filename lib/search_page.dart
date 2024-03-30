@@ -9,18 +9,18 @@ class SearchPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            SizedBox(height: 24), // Space at the top
+            const SizedBox(height: 24), // Space at the top
             _buildSearchSection(),
-            Spacer(), // This will take all available space
+            const Spacer(), // This will take all available space
             Container(
               width: double.infinity,
-              margin: EdgeInsets.symmetric(horizontal: 16.0),
+              margin: const EdgeInsets.symmetric(horizontal: 16.0),
               decoration: BoxDecoration(
-                color: Color(0xFF2C3E50), // Lighter color for the sectionserfghszdfg
+                color: const Color(0xFF2C3E50), // Lighter color for the sectionserfghszdfg
                 borderRadius: BorderRadius.circular(20.0),
               ),
               padding: const EdgeInsets.all(16.0),
-              child: Column(
+              child: const Column(
                 children: [
                   Text(
                     'Saisissez une recherche pour trouver un comics, film, série ou personnage.',
@@ -33,7 +33,7 @@ class SearchPage extends StatelessWidget {
                 ],
               ),
             ),
-            Spacer(), // Another spacer
+            const Spacer(), // Another spacer
             // Assuming you have a character or logo to display at the bottom
             Stack(
               alignment: Alignment.center,
@@ -41,7 +41,7 @@ class SearchPage extends StatelessWidget {
                 Image.asset('images/astronaut.png'), // Path to your PNG image
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  margin: EdgeInsets.symmetric(horizontal: 16.0),
+                  margin: const EdgeInsets.symmetric(horizontal: 16.0),
                   decoration: BoxDecoration(
                     color: Colors.transparent,
                     borderRadius: BorderRadius.circular(20.0),
@@ -49,7 +49,7 @@ class SearchPage extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 24), // Space at the bottom
+            const SizedBox(height: 24), // Space at the bottom
           ],
         ),
       ),
@@ -58,14 +58,14 @@ class SearchPage extends StatelessWidget {
 
   Widget _buildSearchSection() {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16.0),
+      margin: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           _buildSearchBar(),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
 
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
         ],
       ),
     );
@@ -73,17 +73,17 @@ class SearchPage extends StatelessWidget {
 
   Widget _buildSearchBar() {
     return TextField(
-      style: TextStyle(color: Colors.white),
+      style: const TextStyle(color: Colors.white),
       decoration: InputDecoration(
         hintText: 'Comic, film, série...',
-        hintStyle: TextStyle(color: Colors.white70),
+        hintStyle: const TextStyle(color: Colors.white70),
         filled: true,
         fillColor: Colors.white24,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(30.0),
           borderSide: BorderSide.none,
         ),
-        prefixIcon: Icon(Icons.search, color: Colors.white70),
+        prefixIcon: const Icon(Icons.search, color: Colors.white70),
       ),
     );
   }

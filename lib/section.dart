@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'base_page.dart'; // Assurez-vous que le chemin d'accès est correct
 
 class Section extends StatelessWidget {
   final String title;
@@ -9,7 +10,7 @@ class Section extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 20.0), // Ajoute un padding entre les sections
+      margin: const EdgeInsets.only(bottom: 20.0),
       decoration: BoxDecoration(
         color: const Color(0xFF1E3243),
         borderRadius: BorderRadius.circular(10),
@@ -17,7 +18,7 @@ class Section extends StatelessWidget {
       child: Column(
         children: [
           SectionTitle(title: title),
-          child, // C'est ici que nous plaçons le widget HorizontalItemGrid
+          child,
         ],
       ),
     );
@@ -40,7 +41,7 @@ class SectionTitle extends StatelessWidget {
             height: 10.0,
             width: 10.0,
             decoration: const BoxDecoration(
-              color: Color(0xFFFF8100), // Couleur orange pour le point
+              color: Color(0xFFFF8100),
               shape: BoxShape.circle,
             ),
           ),
@@ -56,10 +57,20 @@ class SectionTitle extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              // TODO: Implémentez la navigation vers l'écran "Voir plus"
+              // Utilise la GlobalKey pour accéder à setIndex de BasePage
+              if (title == "Comics populaires") {
+                BasePage.basePageKey.currentState?.setIndex(1); // 1 pour l'index des Comics
+              }
+              else if (title == "Séries populaires") {
+                BasePage.basePageKey.currentState?.setIndex(2); //
+              }
+              else if (title == "Films populaires") {
+                BasePage.basePageKey.currentState?.setIndex(3); //
+              }
+              // Vous pouvez ajouter d'autres conditions ici pour d'autres sections
             },
             style: TextButton.styleFrom(
-              backgroundColor: const Color(0xFF0F1921), // Couleur de fond pour le bouton
+              backgroundColor: const Color(0xFF0F1921),
               padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
