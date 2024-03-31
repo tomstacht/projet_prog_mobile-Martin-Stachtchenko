@@ -36,7 +36,7 @@ class FilmCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        film.titre,
+                        film.name,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
@@ -52,7 +52,7 @@ class FilmCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '№ ${film.issueNumber}',
+                        '№ ${film.id}',
                         style: TextStyle(
                           color: Colors.white.withOpacity(0.7),
                           fontSize: 14,

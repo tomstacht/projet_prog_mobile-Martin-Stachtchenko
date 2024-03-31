@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
-
+import 'package:flutter/material.dart';
 import 'serie_card.dart';
-import 'models/series.dart'; // Ensure this path is correct
+import 'models/serie.dart'; // Ajustez le chemin vers où votre classe Film est définie
+import 'serie_detail_page.dart'; // Ajustez le chemin vers où votre classe FilmDetailPage est définie
+import 'config.dart';
+import 'package:http/http.dart' as http;
 
 class SeriesPage extends StatefulWidget {
   @override
@@ -11,60 +12,85 @@ class SeriesPage extends StatefulWidget {
 }
 
 class _SeriesPageState extends State<SeriesPage> {
-  late Future<List<Series>> futureSeries;
+  List<Serie> series = [];
+  bool isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    futureSeries = fetchSeries();
+    fetchSeries();
   }
 
-  Future<List<Series>> fetchSeries() async {
-    final response = await http.get(
-      Uri.parse( 'https://comicvine.gamespot.com/api/series_list?api_key=${Config.comicVineApiKey}&format=json&limit=$limit&offset=$offset&field_list=id,name,image,publisher,count_of_episodes,start_year,api_detail_url' ),
-      headers: {
-        'Accept': 'application/json',
-      },
-    );
+  Future<void> fetchSeries() async {
+    // Exemple d'URL, remplacez par l'URL de votre API et assurez-vous d'utiliser votre clé API correctement
+    final String apiKey = Config.comicVineApiKey; // Ou une autre clé API si vous utilisez une API différente pour les films
+    final String seriesEndpoint = 'movies'; // Ajustez en fonction de votre API
+    final String apiUrl = 'https://exemple.com/api/$seriesEndpoint?api_key=$apiKey';
 
-    if (response.statusCode == 200) {
-      List<dynamic> seriesJson = json.decode(response.body)['results'];
-      return seriesJson.map((json) => Series.fromJson(json)).toList();
-    } else {
-      throw Exception('Failed to load series from API');
+    try {
+      final response = await http.get(Uri.parse(apiUrl));
+
+      if (response.statusCode == 200) {
+        final List<dynamic> serieData = json.decode(response.body)['results'];
+        final List<Serie> serie = serieData.map((serieJson) => Serie.fromJson(serieJson)).toList();
+
+        setState(() {
+          this.series = series;
+          isLoading = false;
+        });
+      } else {
+        print('Erreur lors de la récupération des series: ${response.statusCode}');
+        setState(() {
+          isLoading = false;
+        });
+      }
+    } catch (e) {
+      print('Erreur lors de la récupération des series: $e');
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF15232E),
-      appBar: AppBar(
-        title: Text('Séries les plus populaires'),
-        backgroundColor: Color(0xFF15232E),
-        elevation: 0,
+      body: Container(
+        color: const Color(0xFF15232E),
+        child: isLoading
+            ? Center(child: CircularProgressIndicator())
+            : SingleChildScrollView(
+          child: Column(
+            children: [
+              _buildHeader(),
+              ...series.map((serie) {
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SerieDetailPage(serie: serie, selectedCategory: 'personnages',)),
+                    );
+                  },
+                  child: SerieCard(serie: serie, rank: series.indexOf(serie) + 1),
+                );
+              }).toList(),
+            ],
+          ),
+        ),
       ),
-      body: FutureBuilder<List<Series>>(
-        future: futureSeries,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text("Error: ${snapshot.error}"));
-          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text("No series found"));
-          }
-          return ListView.builder(
-            itemCount: snapshot.data!.length,
-            itemBuilder: (context, index) {
-              final series = snapshot.data![index];
-              return SerieCard(
-                serie: series,
-                rank: index + 1, // Adding rank based on the index
-              );
-            },
-          );
-        },
+    );
+  }
+
+  Widget _buildHeader() {
+    return const Padding(
+      padding: EdgeInsets.only(left: 5, top: 10, bottom: 20),
+      child: Text(
+        'Séries les plus populaires',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+          fontSize: 30,
+        ),
       ),
     );
   }

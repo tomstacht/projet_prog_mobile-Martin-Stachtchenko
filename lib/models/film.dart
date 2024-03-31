@@ -3,7 +3,7 @@ import 'person.dart';
 import 'studios.dart';
 
 
-class Movie {
+class Film {
   final String id;
   final String name;
   final String imageUrl;
@@ -20,7 +20,7 @@ class Movie {
   final String rating;
   final String apiDetailUrl;
 
-  Movie({
+  Film({
     required this.id,
     required this.name,
     required this.imageUrl,
@@ -38,7 +38,7 @@ class Movie {
     required this.apiDetailUrl,
   });
 
-  factory Movie.fromJson(Map<String, dynamic> json) {
+  factory Film.fromJson(Map<String, dynamic> json) {
     String defaultImageUrl = 'https://www.placecage.com/200/300';
     String id = json['id']?.toString() ?? '0000';
     String name = json['name']?.toString() ?? 'Unknown';
@@ -56,7 +56,7 @@ class Movie {
     String rating = json['rating']?.toString() ?? 'Unknown';
     String apiDetailUrl = json['api_detail_url']?.toString() ?? 'Unknown';
 
-    return Movie(
+    return Film(
       id: id,
       imageUrl: imageUrl,
       name: name,

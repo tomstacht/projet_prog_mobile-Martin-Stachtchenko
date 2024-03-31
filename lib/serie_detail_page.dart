@@ -103,7 +103,7 @@ class _SerieDetailPageState extends State<SerieDetailPage> with SingleTickerProv
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
-        title: Text(widget.serie.titre, style: const TextStyle(color: Colors.white)),
+        title: Text(widget.serie.name, style: const TextStyle(color: Colors.white)),
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.white),
@@ -165,7 +165,7 @@ class _SerieDetailPageState extends State<SerieDetailPage> with SingleTickerProv
                                   ),
                                   const SizedBox(width: 8),
                                   Text(
-                                    'Issue Number: ${widget.serie.issueNumber}',
+                                    'Issue Number: ${widget.serie.id}',
                                     style: const TextStyle(color: Colors.white),
                                   ),
                                 ],
@@ -184,7 +184,7 @@ class _SerieDetailPageState extends State<SerieDetailPage> with SingleTickerProv
                                   ),
                                   const SizedBox(width: 8),
                                   Text(
-                                    'Release Date: ${widget.serie.releaseDate}',
+                                    'Release Date: ${widget.serie.startYear}',
                                     style: const TextStyle(color: Colors.white),
                                   ),
                                 ],

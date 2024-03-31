@@ -1,121 +1,79 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'horizontal_items_grid.dart';
-import 'models/comic.dart';
-import 'section.dart';
-import 'models/serie.dart';
-import 'models/series.dart';
-import 'models/film.dart';
-import 'item_card.dart'; // Importez la classe ItemCard
-import 'comic_detail_page.dart'; // Importez la classe ItemCard
-import 'serie_detail_page.dart'; // Importez la classe ItemCard
-import 'film_detail_page.dart'; // Importez la classe ItemCard
+import 'package:http/http.dart' as http;
 import 'config.dart';
+import 'models/comic.dart';
+import 'horizontal_items_grid.dart';
+import 'section.dart';
+import 'comic_card.dart';
+import 'comic_detail_page.dart';
 
-class HomePage extends StatelessWidget {
-  final List<Serie> mockSeries = List.generate(10, (index) => Serie.mock());
-  final List<Comic> mockComics = List.generate(10, (index) => Comic.mock());
-  final List<Film> mockFilms = List.generate(10, (index) => Film.mock());
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  List<Comic> comics = [];
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchComics();
+  }
+
+  Future<void> fetchComics() async {
+    final String apiKey = Config.comicVineApiKey;
+    final String comicsEndpoint = 'issues';
+    final String apiUrl =
+        'https://comicvine.gamespot.com/api/$comicsEndpoint?api_key=$apiKey&format=json';
+
+    try {
+      final response = await http.get(Uri.parse(apiUrl));
+      if (response.statusCode == 200) {
+        final List<dynamic> comicData = json.decode(response.body)['results'];
+        final List<Comic> comics = comicData.map((comicJson) => Comic.fromJson(comicJson)).toList();
+
+        setState(() {
+          this.comics = comics;
+          isLoading = false;
+        });
+      } else {
+        print('Erreur lors de la récupération des comics: ${response.statusCode}');
+        setState(() {
+          isLoading = false;
+        });
+      }
+    } catch (e) {
+      print('Erreur lors de la récupération des comics: $e');
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: const Color(0xFF15232E), // Définissez la couleur d'arrière-plan
-      child: SingleChildScrollView(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Mon App Comics'),
+      ),
+      body: isLoading
+          ? Center(child: CircularProgressIndicator())
+          : SingleChildScrollView(
         child: Column(
           children: [
-            _buildHeader(),
             Section(
-              title: 'Séries populaires',
-              child: HorizontalItemGrid<Serie>(
-                items: mockSeries,
-                itemBuilder: (serie) => ItemCard<Serie>(
-                  item: serie,
-                  imageUrlField: serie.imageUrl,
-                  titleField: serie.titre,
-                  category: 'Série',
-                  onTap: (item) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SerieDetailPage(serie: item, selectedCategory: 'histoire',),
-                      ),
-                    );
-                    // Logique à exécuter lors du clic sur la carte de série
-                  },
-                ),
-              ),
-            ),
-            Section(
-              title: 'Comics populaires',
+              title: 'Comics Populaires',
               child: HorizontalItemGrid<Comic>(
-                items: mockComics,
-                itemBuilder: (comic) => ItemCard<Comic>(
-                  item: comic,
-                  imageUrlField: comic.imageUrl,
-                  titleField: comic.titre,
-                  category: 'Comic',
-                  onTap: (item) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ComicDetailPage(comic: item, selectedCategory: 'histoire',),
-                      ),
-                    );
-                    // Logique à exécuter lors du clic sur la carte de comic
-                  },
-                ),
-              ),
-            ),
-            Section(
-              title: 'Films populaires',
-              child: HorizontalItemGrid<Film>(
-                items: mockFilms,
-                itemBuilder: (film) => ItemCard<Film>(
-                  item: film,
-                  imageUrlField: film.imageUrl,
-                  titleField: film.titre,
-                  category: 'Film',
-                  onTap: (item) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => FilmDetailPage(film: item, selectedCategory: 'synopsis',),
-                      ),
-                    );
-                    // Logique à exécuter lors du clic sur la carte de film
-                  },
-                ),
+                items: comics,
+                itemBuilder: (comic) => ComicCard(comic: comic, rank: comics.indexOf(comic) + 1), // Ici, le rank est défini
               ),
             ),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildHeader() {
-    return Row(
-      children: <Widget>[
-        const Padding(
-          padding: EdgeInsets.only(left: 10),
-          child: Text(
-            'Bienvenue !',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-              fontSize: 40,
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 70),
-          child: Image.asset(
-            'images/astronaut.png',
-            height: 159,
-            width: 121,
-          ),
-        ),
-      ],
     );
   }
 }

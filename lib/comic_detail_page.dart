@@ -103,7 +103,7 @@ class _ComicDetailPageState extends State<ComicDetailPage> with SingleTickerProv
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
-        title: Text(widget.comic.titre, style: const TextStyle(color: Colors.white)),
+        title: Text(widget.comic.name, style: const TextStyle(color: Colors.white)),
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.white),
@@ -184,7 +184,7 @@ class _ComicDetailPageState extends State<ComicDetailPage> with SingleTickerProv
                                   ),
                                   SizedBox(width: 8),
                                   Text(
-                                    'Release Date: ${widget.comic.releaseDate}',
+                                    'Release Date: ${widget.comic.coverDate}',
                                     style: TextStyle(color: Colors.white),
                                   ),
                                 ],

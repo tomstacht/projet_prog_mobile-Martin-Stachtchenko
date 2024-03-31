@@ -103,7 +103,7 @@ class _FilmDetailPageState extends State<FilmDetailPage> with SingleTickerProvid
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
-        title: Text(widget.film.titre, style: const TextStyle(color: Colors.white)),
+        title: Text(widget.film.name, style: const TextStyle(color: Colors.white)),
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.white),
@@ -165,7 +165,7 @@ class _FilmDetailPageState extends State<FilmDetailPage> with SingleTickerProvid
                                   ),
                                   const SizedBox(width: 8),
                                   Text(
-                                    'Issue Number: ${widget.film.issueNumber}',
+                                    'Issue Number: ${widget.film.id}',
                                     style: const TextStyle(color: Colors.white),
                                   ),
                                 ],

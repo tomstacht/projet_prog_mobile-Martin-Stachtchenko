@@ -36,7 +36,7 @@ class SerieCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        serie.titre,
+                        serie.name,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
@@ -52,14 +52,14 @@ class SerieCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '№ ${serie.issueNumber}',
+                        '№ ${serie.id}',
                         style: TextStyle(
                           color: Colors.white.withOpacity(0.7),
                           fontSize: 14,
                         ),
                       ),
                       Text(
-                        serie.releaseDate,
+                        serie.startYear,
                         style: TextStyle(
                           color: Colors.white.withOpacity(0.7),
                           fontSize: 12,
