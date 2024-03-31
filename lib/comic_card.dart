@@ -36,7 +36,7 @@ class ComicCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        comic.titre,
+                        comic.name,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
@@ -59,7 +59,7 @@ class ComicCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        comic.releaseDate,
+                        comic.coverDate,
                         style: TextStyle(
                           color: Colors.white.withOpacity(0.7),
                           fontSize: 12,

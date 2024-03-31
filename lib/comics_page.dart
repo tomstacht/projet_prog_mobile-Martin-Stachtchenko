@@ -1,10 +1,14 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'comic_card.dart';
 import 'models/comic.dart'; // Ajustez le chemin vers où votre classe Comic est définie
 import 'comic_detail_page.dart'; // Assurez-vous d'importer ComicDetailPage
+import 'config.dart';
+import 'package:http/http.dart' as http;
 
 class ComicsPage extends StatelessWidget {
-  final List<Comic> mockComics = List.generate(10, (index) => Comic.mock());
+  final List<Comic> fromJson = List.generate(10, (index) => Comic.fromJson());
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +18,7 @@ class ComicsPage extends StatelessWidget {
         child: Column(
           children: [
             _buildHeader(),
-            ...mockComics.map((comic) {
+            ...fromJson.map((comic) {
               // Utilisez GestureDetector ou InkWell pour envelopper ComicCard
               return GestureDetector(
                 onTap: () {
@@ -47,3 +51,10 @@ class ComicsPage extends StatelessWidget {
     );
   }
 }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
+  }
+

@@ -1,38 +1,55 @@
-class Comic {
-  final String titre;
-  final String auteur;
-  final String histoire;
-  final List<String> personnages;
-  final int id;
-  final String description;
+import 'character.dart';
+import 'Person.dart';
+
+class Comic{
+  final String id;
   final String imageUrl;
-  final int issueNumber;
-  final String releaseDate;
+  final String name;
+  final Map<String, dynamic> volume;
+  final String issueNumber;
+  final String coverDate;
+  final List<Character> characters;
+  final List<Person> creators;
+  final String description;
+  final String apiDetailUrl;
 
   Comic({
-    required this.titre,
-    required this.auteur,
-    required this.histoire,
-    required this.personnages,
     required this.id,
-    required this.description,
     required this.imageUrl,
+    required this.name,
+    required this.volume,
     required this.issueNumber,
-    required this.releaseDate,
+    required this.coverDate,
+    required this.characters,
+    required this.creators,
+    required this.description,
+    required this.apiDetailUrl,
   });
 
-  // If you're using mock data for now, you can create a mock constructor like this:
-  factory Comic.mock() {
+  factory Comic.fromJson(Map<String, dynamic> json) {
+    String defaultImageUrl = 'https://www.placecage.com/200/300';
+    String id = json['id']?.toString() ?? '0000';
+    String name = json['name']?.toString() ?? 'Unknown';
+    String imageUrl = json['image'] != null ? json['image']['original_url'] ?? defaultImageUrl : defaultImageUrl;
+    Map<String, dynamic> volume = json['volume'] ?? {};
+    String issueNumber = json['issue_number']?.toString() ?? 'Unknown';
+    String coverDate = json['cover_date']?.toString() ?? 'Unknown';
+    List<Character> characters = (json['character_credits'] as List<dynamic>?)?.map((e) => Character.fromJson(e)).toList() ?? [];
+    List<Person> creators = (json['person_credits'] as List<dynamic>?)?.map((e) => Person.fromJson(e)).toList() ?? [];
+    String description = json['description']?.toString() ?? '';
+    String apiDetailUrl = json['api_detail_url']?.toString() ?? '';
+
     return Comic(
-      id: 1,
-      auteur: 'auteur',
-      titre: 'Titre du comic',
-      histoire: 'Histoire',
-      personnages: ['Personnage1', 'Personnage2'], // Exemple de liste de personnages
-      description: 'Courte description',
-      imageUrl: 'images/astronaut.png', // Replace with a real image path or URL
-      issueNumber: 1,
-      releaseDate: 'Jan 2020',
+      id: id,
+      imageUrl: imageUrl,
+      name: name,
+      volume: volume,
+      issueNumber: issueNumber,
+      coverDate: coverDate,
+      characters: characters,
+      creators: creators,
+      description: description,
+      apiDetailUrl: apiDetailUrl,
     );
   }
 }
