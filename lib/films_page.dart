@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'film_card.dart';
-import 'film.dart'; // Adjust the path to where your Comic class is defined
+import 'models/film.dart'; // Adjust the path to where your Comic class is defined
 import 'film_detail_page.dart'; // Adjust the path to where your Comic class is defined
 
 

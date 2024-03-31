@@ -1,6 +1,6 @@
 import 'dart:ui'; // Import for using the ImageFilter class
 import 'package:flutter/material.dart';
-import 'film.dart';
+import 'models/film.dart';
 
 class FilmDetailPage extends StatefulWidget {
   final Film film;

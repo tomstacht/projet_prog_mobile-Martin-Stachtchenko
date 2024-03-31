@@ -1,6 +1,6 @@
 import 'dart:ui'; // Import for using the ImageFilter class
 import 'package:flutter/material.dart';
-import 'serie.dart';
+import 'models/serie.dart';
 
 class SerieDetailPage extends StatefulWidget {
   final Serie serie;

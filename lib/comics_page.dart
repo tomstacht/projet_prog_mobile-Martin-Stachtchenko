@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'comic_card.dart';
-import 'comic.dart'; // Ajustez le chemin vers où votre classe Comic est définie
+import 'models/comic.dart'; // Ajustez le chemin vers où votre classe Comic est définie
 import 'comic_detail_page.dart'; // Assurez-vous d'importer ComicDetailPage
 
 class ComicsPage extends StatelessWidget {

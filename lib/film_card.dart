@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'film.dart'; // Adjust the path to where your Comic class is defined
+import 'models/film.dart'; // Adjust the path to where your Comic class is defined
 
 class FilmCard extends StatelessWidget {
   final Film film;

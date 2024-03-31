@@ -1,6 +1,6 @@
 import 'dart:ui'; // Import for using the ImageFilter class
 import 'package:flutter/material.dart';
-import 'comic.dart';
+import 'models/comic.dart';
 
 class ComicDetailPage extends StatefulWidget {
   final Comic comic;

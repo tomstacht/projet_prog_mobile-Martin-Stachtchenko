@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projet_prog_mobile/comic.dart'; // Adjust the path to where your Comic class is defined
+import 'package:projet_prog_mobile/models/comic.dart'; // Adjust the path to where your Comic class is defined
 
 class ComicCard extends StatelessWidget {
   final Comic comic;

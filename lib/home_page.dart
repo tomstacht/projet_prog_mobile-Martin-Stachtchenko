@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'horizontal_items_grid.dart';
-import 'comic.dart';
+import 'models/comic.dart';
 import 'section.dart';
-import 'serie.dart';
-import 'film.dart';
+import 'models/serie.dart';
+import 'models/series.dart';
+import 'models/film.dart';
 import 'item_card.dart'; // Importez la classe ItemCard
 import 'comic_detail_page.dart'; // Importez la classe ItemCard
 import 'serie_detail_page.dart'; // Importez la classe ItemCard
 import 'film_detail_page.dart'; // Importez la classe ItemCard
+import 'config.dart';
 
 class HomePage extends StatelessWidget {
   final List<Serie> mockSeries = List.generate(10, (index) => Serie.mock());
