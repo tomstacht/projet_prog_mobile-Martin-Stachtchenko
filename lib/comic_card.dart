@@ -45,7 +45,7 @@ class ComicCard extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          comic.description ?? 'Description non disponible',
+                          comic.description,//?? 'Description non disponible',
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
