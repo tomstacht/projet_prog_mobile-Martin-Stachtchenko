@@ -22,10 +22,9 @@ class _FilmsPageState extends State<FilmsPage> {
   }
 
   Future<void> fetchFilms() async {
-    // Exemple d'URL, remplacez par l'URL de votre API et assurez-vous d'utiliser votre clé API correctement
-    final String apiKey = Config.comicVineApiKey; // Ou une autre clé API si vous utilisez une API différente pour les films
-    final String filmsEndpoint = 'movies'; // Ajustez en fonction de votre API
-    final String apiUrl = 'https://exemple.com/api/$filmsEndpoint?api_key=$apiKey';
+    final String apiKey = Config.comicVineApiKey;
+    final String filmsEndpoint = 'movies';
+    final String apiUrl = 'https://comicvine.gamespot.com/api/$filmsEndpoint?api_key=$apiKey&format=json';
 
     try {
       final response = await http.get(Uri.parse(apiUrl));

@@ -23,7 +23,7 @@ class SerieCard extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Image.asset(
+              Image.network(
                 serie.imageUrl,
                 width: 100,
                 height: 150,

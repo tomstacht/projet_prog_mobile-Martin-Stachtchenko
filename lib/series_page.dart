@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'serie_card.dart';
-import 'models/serie.dart'; // Ajustez le chemin vers où votre classe Film est définie
-import 'serie_detail_page.dart'; // Ajustez le chemin vers où votre classe FilmDetailPage est définie
+import 'models/serie.dart';
+import 'serie_detail_page.dart';
 import 'config.dart';
 import 'package:http/http.dart' as http;
 
@@ -22,17 +22,16 @@ class _SeriesPageState extends State<SeriesPage> {
   }
 
   Future<void> fetchSeries() async {
-    // Exemple d'URL, remplacez par l'URL de votre API et assurez-vous d'utiliser votre clé API correctement
-    final String apiKey = Config.comicVineApiKey; // Ou une autre clé API si vous utilisez une API différente pour les films
-    final String seriesEndpoint = 'movies'; // Ajustez en fonction de votre API
-    final String apiUrl = 'https://exemple.com/api/$seriesEndpoint?api_key=$apiKey';
+    final String apiKey = Config.comicVineApiKey;
+    final String seriesEndpoint = 'movies';
+    final String apiUrl = 'https://comicvine.gamespot.com/api/$seriesEndpoint?api_key=$apiKey&format=json';
 
     try {
       final response = await http.get(Uri.parse(apiUrl));
 
       if (response.statusCode == 200) {
         final List<dynamic> serieData = json.decode(response.body)['results'];
-        final List<Serie> serie = serieData.map((serieJson) => Serie.fromJson(serieJson)).toList();
+        final List<Serie> series = serieData.map((serieJson) => Serie.fromJson(serieJson)).toList();
 
         setState(() {
           this.series = series;
@@ -68,7 +67,7 @@ class _SeriesPageState extends State<SeriesPage> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SerieDetailPage(serie: serie, selectedCategory: 'personnages',)),
+                      MaterialPageRoute(builder: (context) => SerieDetailPage(serie: serie, selectedCategory: 'personnages')),
                     );
                   },
                   child: SerieCard(serie: serie, rank: series.indexOf(serie) + 1),

@@ -23,7 +23,7 @@ class FilmCard extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Image.asset(
+              Image.network(
                 film.imageUrl,
                 width: 100,
                 height: 150,
